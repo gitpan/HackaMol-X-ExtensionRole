@@ -35,4 +35,4 @@ requires:
   Hackamol: 0.00
   Moose::Role: 0
   perl: 5.008
-version: 0.00_1
+version: 0.00_2

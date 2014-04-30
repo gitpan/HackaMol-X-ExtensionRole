@@ -9,7 +9,7 @@ use Carp;
 
 with qw(HackaMol::ExeRole HackaMol::PathRole);
 
-requires qw(_build_map_in _build_map_out);
+requires qw(_build_map_in _build_map_out build_command);
 
 has 'mol' => (
     is  => 'ro',
@@ -30,20 +30,6 @@ has 'map_out' => (
     builder   => '_build_map_out',
     lazy      => 1,
 );
-
-sub build_command {
-    # exe -options file.inp -moreoptions > file.out
-    my $self = shift;
-    return 0 unless $self->exe;
-    my $cmd;
-    $cmd = $self->exe;
-    $cmd .= " " . $self->in_fn->stringify    if $self->has_in_fn;
-    $cmd .= " " . $self->exe_endops          if $self->has_exe_endops;
-    $cmd .= " > " . $self->out_fn->stringify if $self->has_out_fn;
-
-    # no cat of out_fn because of options to run without writing, etc
-    return $cmd;
-}
 
 sub map_input {
 
@@ -103,7 +89,7 @@ HackaMol::X::ExtensionRole - Role to assist writing HackaMol extensions to exter
 
 =head1 VERSION
 
-version 0.00_1
+version 0.00_2
 
 =head1 SYNOPSIS
 
