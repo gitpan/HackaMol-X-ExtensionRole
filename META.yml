@@ -32,7 +32,6 @@ requires:
   File::chdir: 0.1008
   HackaMol::ExeRole: 0
   HackaMol::PathRole: 0
-  Hackamol: 0.00
   Moose::Role: 0
   perl: 5.008
-version: 0.00_2
+version: 0.00_3

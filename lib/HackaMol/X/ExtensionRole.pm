@@ -35,27 +35,18 @@ sub map_input {
 
     # pass everything and anything to map_in... i.e. keep @_ in tact
     my ($self) = @_;
-    unless ( $self->has_in_fn and $self->has_map_in ) {
-        carp "in_fn and map_in attrs required to map input";
-        return 0;
-    }
     local $CWD = $self->scratch if ( $self->has_scratch );
-    my $input = &{ $self->map_in }(@_);
+    return ( &{ $self->map_in }(@_) );
 
-    return $input;
 }
 
 sub map_output {
 
     # pass everything and anything to map_out... i.e. keep @_ in tact
     my ($self) = @_;
-    unless ( $self->has_out_fn and $self->has_map_out ) {
-        carp "out_fn and map_out attrs required to map output";
-        return 0;
-    }
     local $CWD = $self->scratch if ( $self->has_scratch );
-    my $output = &{ $self->map_out }(@_);
-    return $output;
+    return ( &{ $self->map_out }(@_) );
+
 }
 
 sub capture_sys_command {
@@ -89,7 +80,7 @@ HackaMol::X::ExtensionRole - Role to assist writing HackaMol extensions to exter
 
 =head1 VERSION
 
-version 0.00_2
+version 0.00_3
 
 =head1 SYNOPSIS
 
